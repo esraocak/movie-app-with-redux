@@ -1,11 +1,12 @@
 import React from "react";
-import Register from "./pages/Register";
+import { Provider } from "react-redux";
+import AppRouter from "./router/AppRouter";
 
 const App = () => {
   return (
-    <div>
-      <Register />
-    </div>
+    <Provider store={store} >
+      <AppRouter />
+    </Provider>
   );
 };
 

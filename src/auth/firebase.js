@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 //* Your web app's Firebase configuration
 const firebaseConfig = {
@@ -15,3 +15,65 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
+
+
+export const createUser = async (email, password, navigate, displayName) => {
+  //? yeni bir kullanıcı oluşturmak için kullanılan method
+  try {
+    let userCredential = await createUserWithEmailAndPassword (
+    auth,
+    email,
+    password
+  );
+    navigate("/");
+    console.log(userCredential);
+  } catch (error) {
+    console.log(error.message);
+  }
+  
+};
+
+export const signIn = async (email, password,navigate) => {
+  //? user daha önce kayıt olmuş ve login yapmak istediğinde
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    console.log("hellooo")
+    navigate("/");
+    //toastSuccessNotify("Logged in successfully!");
+  } catch (error) {
+    //toastErrorNotify(error.message);
+  alert(error.message);
+  }
+};
+
+
+export const userObserver = (dispatch) => {
+  //? Kullanıcının signin olup olmadığını takip eden ve kullanıcı değiştiğinde yeni kullanıcıyı response olarak dönen firebase metodu
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const { email, displayName } = user;
+      dispatch(
+        setUser({
+          displayname: displayName,
+          email: email,
+        })
+        
+      );
+      console.log(user)
+      
+    } else {
+      console.log("user signed out");
+        dispatch(
+            clearUser()
+          );
+    }
+  });
+};
+
+
+export const logOut = (navigate, dispatch) => {
+  signOut(auth);
+  dispatch(clearUser());
+  //toastWarnNotify("Çıkış Yapıldı..");
+  navigate("/");
+};
