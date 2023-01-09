@@ -1,17 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import avatar from "../assets/icons/avatar.png";
-import { logOut } from "../auth/firebase";
-import { AuthContext } from "../context/AuthContextProvider";
+import { logOut, userObserver } from "../auth/firebase";
+import { setCurrentUser } from "../features/registerSlice";
 import Switch from "./Switch";
 
 const Navbar = () => {
-  // const { currentUser } = useContext(AuthContext);
-  //* with custom hook
-  // const { currentUser } = useAuthContext();
+  const { currentUser } = useSelector((state) => state.register);
+  const dispatch=useDispatch();
 
-  const currentUser = { displayName: "felix franko" };
-  // const currentUser = false;
+  useEffect(() => {
+    userObserver(
+      dispatch(setCurrentUser()));
+  }, []);
+
+  
   return (
     <>
       <nav className="w-full flex flex-wrap items-center justify-between py-3 bg-white dark:bg-gray-900 dark:text-white shadow-lg navbar navbar-expand-lg fixed-top">

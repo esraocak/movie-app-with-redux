@@ -18,10 +18,9 @@ const Register = () => {
     e.preventDefault();
     const displayName = `${firstName} ${lastName}`;
     createUser(email, password, navigate, displayName);
-    //! dispatch (setUser({email,password,displayName})); ben ekledim redux için yanlış galiba
-
+   
     console.log(firstName, lastName);
-    console.log(user);
+    
   };
 
   const handleGoogleProvider = () => {
