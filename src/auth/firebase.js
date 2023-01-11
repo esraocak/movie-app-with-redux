@@ -49,6 +49,11 @@ export const createUser = async (email, password, navigate, displayName) => {
     // alert(error.message);
   }
 };
+
+//* https://console.firebase.google.com/
+//* => Authentication => sign-in-method => enable Email/password
+//! Email/password ile girişi enable yap
+
 export const signIn = async (email, password,navigate) => {
   //? user daha önce kayıt olmuş ve login yapmak istediğinde
   try {
@@ -61,8 +66,6 @@ export const signIn = async (email, password,navigate) => {
   // alert(error.message);
   }
 };
-
-
 
 export const userObserver = () => {
   //? Kullanıcının signin olup olmadığını takip eden ve kullanıcı değiştiğinde yeni kullanıcıyı response olarak dönen firebase metodu
@@ -83,7 +86,14 @@ export const userObserver = () => {
 
 export const logOut = () => {
   signOut(auth);
+  toastSuccessNotify("Logged out successfully!");
 };
+
+//* https://console.firebase.google.com/
+//* => Authentication => sign-in-method => enable Google
+//! Google ile girişi enable yap
+//* => Authentication => settings => Authorized domains => add domain
+//! Projeyi deploy ettikten sonra google sign-in çalışması için domain listesine deploy linkini ekle
 
 
 export const signUpWithGoogle = (navigate) => {
@@ -91,7 +101,7 @@ export const signUpWithGoogle = (navigate) => {
   //? Açılır pencere ile giriş yapılması için kullanılan firebase metodu
   signInWithPopup(auth, provider)
     .then((result) => {
-      console.log(result);
+      // console.log(result);
       navigate("/");
       toastSuccessNotify("Logged in successfully!");
     })
