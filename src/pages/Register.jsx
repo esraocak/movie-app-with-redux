@@ -18,7 +18,6 @@ const Register = () => {
     e.preventDefault();
     const displayName = `${firstName} ${lastName}`;
     createUser(email, password, navigate, displayName);
-   
     console.log(firstName, lastName);
     
   };

@@ -45,7 +45,7 @@ const Navbar = () => {
                   style={{ height: 25, width: 25 }}
                   alt="user"
                   loading="lazy"
-                  referrerPolicy="no-referrer"
+                  referrerPolicy="no-referrer"//!güvenlikle ilgili bir eklenti resim gelsin die yaz
                 />
               </span>
               <ul

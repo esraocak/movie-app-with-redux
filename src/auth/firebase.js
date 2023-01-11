@@ -10,6 +10,7 @@ import { createUserWithEmailAndPassword,
   updateProfile, } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../features/registerSlice";
+import { toastErrorNotify, toastSuccessNotify, toastWarnNotify } from "../helpers/ToastNotify";
 
 
 //* Your web app's Firebase configuration
@@ -36,24 +37,28 @@ export const createUser = async (email, password, navigate, displayName) => {
     email,
     password
   );
+    //? kullanıcı profilini güncellemek için kullanılan firebase metodu
+    await updateProfile(auth.currentUser, {
+      displayName: displayName,
+    });
     navigate("/");
-    console.log(userCredential);
+    toastSuccessNotify("Registered successfully!");
+    // console.log(userCredential);
   } catch (error) {
-    console.log(error.message);
+    toastErrorNotify(error.message);
+    // alert(error.message);
   }
-  
 };
-
 export const signIn = async (email, password,navigate) => {
   //? user daha önce kayıt olmuş ve login yapmak istediğinde
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    console.log("hellooo")
+    // console.log("hellooo")
     navigate("/");
-    //toastSuccessNotify("Logged in successfully!");
+    toastSuccessNotify("Logged in successfully!");
   } catch (error) {
-    //toastErrorNotify(error.message);
-  alert(error.message);
+    toastErrorNotify(error.message);
+  // alert(error.message);
   }
 };
 
@@ -80,14 +85,15 @@ export const logOut = () => {
   signOut(auth);
 };
 
+
 export const signUpWithGoogle = (navigate) => {
   const provider = new GoogleAuthProvider();
   //? Açılır pencere ile giriş yapılması için kullanılan firebase metodu
   signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result);
-      // navigate("/");
-      // toastSuccessNotify("Logged in successfully!");
+      navigate("/");
+      toastSuccessNotify("Logged in successfully!");
     })
     .catch((error) => {
       // Handle Errors here.
@@ -95,17 +101,18 @@ export const signUpWithGoogle = (navigate) => {
     });
 };
 
+
 export const forgotPassword = (email) => {
   //? Email yoluyla şifre sıfırlama için kullanılan firebase metodu
   sendPasswordResetEmail(auth, email)
     .then(() => {
       // Password reset email sent!
-      // toastWarnNotify("Please check your mail box!");
-      alert("Please check your mail box!");
+      toastWarnNotify("Please check your mail box!");
+      // alert("Please check your mail box!");
     })
     .catch((err) => {
-      // toastErrorNotify(err.message);
-      alert(err.message);
+      toastErrorNotify(err.message);
+      // alert(err.message);
       // ..
     });
 };
