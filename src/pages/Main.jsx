@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
 import MovieCard from "../components/MovieCard";
 // import { toastWarnNotify } from "../helpers/ToastNotify";

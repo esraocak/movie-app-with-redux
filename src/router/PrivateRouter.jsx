@@ -4,11 +4,10 @@ import { useSelector } from "react-redux";
 
 const PrivateRouter = () => {
   const { currentUser } = useSelector((state) => state.register);
-  return (
-    <div> 
-      {currentUser? <Outlet/>:<Navigate to="/login" replace />}
-    </div>
-  )
+  console.log({currentUser});
+
+  return currentUser? <Outlet/>:<Navigate to="/login" replace />;
+  
 }
 
 export default PrivateRouter
