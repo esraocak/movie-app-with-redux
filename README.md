@@ -20,3 +20,21 @@ Build an Movie App using ReactJS.
 - JS
 
 - ReactJS
+
+- React Components, Props, States and Hooks
+
+- API GET,POST requests
+
+- Axios
+
+- React-Router
+
+- Redux
+
+- Toastify
+
+-TailwindCSS
+
+-Firebase Auth
+
+
