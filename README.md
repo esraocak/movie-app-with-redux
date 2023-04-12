@@ -33,8 +33,8 @@ Build an Movie App using ReactJS.
 
 - Toastify
 
--TailwindCSS
+- TailwindCSS
 
--Firebase Auth
+- Firebase Auth
 
 
