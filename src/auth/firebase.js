@@ -15,12 +15,13 @@ import { toastErrorNotify, toastSuccessNotify, toastWarnNotify } from "../helper
 
 //* Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_apiKey,
-  authDomain: process.env.REACT_APP_authDomain,
-  projectId: process.env.REACT_APP_projectId,
-  storageBucket: process.env.REACT_APP_storageBucket,
-  messagingSenderId: process.env.REACT_APP_messagingSenderId,
-  appId: process.env.REACT_APP_appId,
+    apiKey: "AIzaSyBA1JOWP6AF90-z5uTM5zwsDZoAdGOsTek",
+    authDomain: "movie-app-with-redux.firebaseapp.com",
+    databaseURL: "https://movie-app-with-redux-default-rtdb.firebaseio.com",
+    projectId: "movie-app-with-redux",
+    storageBucket: "movie-app-with-redux.appspot.com",
+    messagingSenderId: "833274784383",
+    appId: "1:833274784383:web:b4e2b002451f8d3548ad4a"
 };
 
 // Initialize Firebase
