@@ -1,7 +1,7 @@
 
 # Movie App
 
-## Live Link ---> 
+## Live Link ---> https://movie-app-with-redux.netlify.app/
 
 ## Description
 
