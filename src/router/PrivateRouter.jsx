@@ -6,7 +6,7 @@ const PrivateRouter = () => {
   const { currentUser } = useSelector((state) => state.register);
   console.log({currentUser});
 
-  return currentUser? <Outlet/>:<Navigate to="/login" replace />;
+  return <> { currentUser? <Outlet/>:<Navigate to="/login" replace />}</>;
   
 }
 

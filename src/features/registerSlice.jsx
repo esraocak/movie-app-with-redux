@@ -10,6 +10,7 @@ const registerSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser: (state,action) => {
+      console.log(state)
         state.currentUser = action.payload;
       
     },
